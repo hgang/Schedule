@@ -49,6 +49,7 @@ public class DBGenerateUtil {
     private static final String COLOUMN_TYPE_STRING = "string";
     private static final String COLOUMN_TYPE_INT = "int";
     private static final String COLOUMN_TYPE_LONG = "long";
+    private static final String COLOUMN_TYPE_BOOL = "boolean";
     private static final String COLOUMN_TYPE_DOUBLE = "double";
     private static final String COLOUMN_TYPE_DATE = "date";
 
@@ -192,6 +193,11 @@ public class DBGenerateUtil {
                             entity.addDateProperty(content);
                         else
                             entity.addDateProperty(content).notNull();
+                    } else if (type.equals(COLOUMN_TYPE_BOOL)) {
+                        if (nullAble)
+                            entity.addBooleanProperty(content);
+                        else
+                            entity.addBooleanProperty(content).notNull();
                     } else {//if column type of xml is not illegal then throw exception
                         throw new IllegalArgumentException("coloumn type illegal!\ntag:" + tagName + " type:" + type);
                     }
