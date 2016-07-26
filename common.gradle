@@ -1,0 +1,22 @@
+//生成Build Variant的通用脚本
+
+apply plugin: getPluginName() //因为插件有application、library两种，所以无法写死，直接交由继承的子项目来处理吧
+
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+    //publishNonDefault true
+//    defaultPublishConfig rootProject.ext.configurationName
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode rootProject.ext.versionCode
+        versionName rootProject.ext.versionName
+    }
+}
+
+dependencies{
+    testCompile 'junit:junit:4.12'
+}

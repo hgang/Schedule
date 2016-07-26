@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Database>
+    <version>3</version>
+    <Table tableName="People" generateAble="false">
+        <id autoIncrement = "true"/>
+        <column type = "string" nullAble="true">name</column>
+        <column type = "int">age</column>
+        <column type = "long">age1</column>
+        <column type = "double">age2</column>
+        <column type = "date">birthday</column>
+    </Table>
+    <Table tableName="PlatformBean" generateAble="true">
+        <id autoIncrement = "true"/>
+        <column type = "string">name</column>
+    </Table>
+    <Table tableName="ProjectBean" generateAble="true">
+        <id autoIncrement = "true"/>
+        <column type = "int">platform_id</column>
+        <column type = "string">platform_name</column>
+        <column type = "string">type</column>
+        <column type = "string">name</column>
+        <column type = "double">principal</column>
+        <column type = "date">start_time</column>
+        <column type = "date">end_time</column>
+        <column type = "double">interest</column>
+        <column type = "double">interest_rate</column>
+    </Table>
+</Database>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:divider="@drawable/divider_vertical"
+              android:gravity="center_vertical"
+              android:orientation="horizontal"
+              android:paddingBottom="10dp"
+              android:paddingLeft="@dimen/activity_horizontal_margin"
+              android:paddingRight="@dimen/activity_horizontal_margin"
+              android:paddingTop="10dp"
+              android:showDividers="middle"
+              tools:context="com.heg.schedule.project.ProjectActivity"
+              android:weightSum="4">
+
+    <TextView
+        android:id="@+id/item_platform_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1.0"
+        android:gravity="center"
+        android:textColor="@android:color/black"
+        android:text="dsd"
+        android:maxLines="1"
+        android:textSize="16sp"/>
+
+    <TextView
+        android:id="@+id/item_project_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1.0"
+        android:text="dsd"
+        android:textColor="@android:color/black"
+        android:gravity="center"
+        android:maxLines="1"
+        android:textSize="16sp"/>
+
+    <TextView
+        android:id="@+id/item_project_principal"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1.0"
+        android:textColor="@android:color/black"
+        android:text="dsd"
+        android:gravity="center"
+        android:maxLines="1"
+        android:textSize="16sp"/>
+
+    <TextView
+        android:id="@+id/item_project_end_time"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1.0"
+        android:text="dsd"
+        android:textColor="@android:color/black"
+        android:gravity="center"
+        android:maxLines="1"
+        android:textSize="16sp"/>
+
+</LinearLayout>

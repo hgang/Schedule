@@ -1,0 +1,4 @@
+Properties props = new Properties()
+props.load(new FileInputStream(file("$rootDir/config/path.properties")))
+include ':app', ':baselib', ':database', ':widget'
+project(':baselib').projectDir = new File(props['BASE_LIB']) //引用其它目录的PekallAndroidUtility库，根据自己的路径修改

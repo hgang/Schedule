@@ -1,0 +1,20 @@
+//告诉继承的AndroidCommonBuild.gradle自己是library项目
+def getPluginName() {
+    return 'com.android.library'
+}
+
+apply from: "$rootDir/common.gradle" //引入生成Build Variant的通用脚本
+def DATABASE_VERSION = 3;// database version
+def DATABASE_NAME = "schedule";// database version
+
+android {
+    defaultConfig {
+        buildConfigField("int", "DATABASE_VERSION", sprintf("%s", DATABASE_VERSION))
+        buildConfigField("String", "DATABASE_NAME", sprintf("\"%s\"", DATABASE_NAME))
+    }
+}
+
+dependencies {
+    compile 'de.greenrobot:greendao:2.1.0'
+    compile 'de.greenrobot:greendao-generator:2.1.0'
+}

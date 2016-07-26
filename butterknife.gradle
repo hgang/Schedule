@@ -1,0 +1,23 @@
+//ButterKnife的配置脚本，其它工程可以快速引用，实现使用ButterKnife库
+
+apply plugin: 'com.neenbedankt.android-apt'
+
+dependencies {
+    compile 'com.jakewharton:butterknife:8.0.1'
+    apt 'com.jakewharton:butterknife-compiler:8.0.1'
+}
+
+android {
+    packagingOptions {
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE.txt'
+    }
+}
+//apt {
+//    arguments {
+//        androidManifestFile variant.outputs[0].processResources.manifestFile
+//        //配置资源包所使用的appid.由于注解框架的R类和多渠道编译生成的R类使用的包名不一致,需要指定资源包使用的包名为缺省包名
+//        //缺省的包名在gradle配置文件中设置:defaultConfig{applicationId:.....}
+//        resourcePackageName android.defaultConfig.applicationId
+//    }
+//}
