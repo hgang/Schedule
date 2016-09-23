@@ -4,7 +4,7 @@ def getPluginName() {
 }
 
 apply from: "$rootDir/common.gradle" //引入生成Build Variant的通用脚本
-def DATABASE_VERSION = 3;// database version
+def DATABASE_VERSION = 4;// database version
 def DATABASE_NAME = "schedule";// database version
 
 android {

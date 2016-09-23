@@ -24,5 +24,6 @@
         <column type = "date">end_time</column>
         <column type = "double">interest</column>
         <column type = "double">interest_rate</column>
+        <column type = "boolean">deleted</column>
     </Table>
 </Database>

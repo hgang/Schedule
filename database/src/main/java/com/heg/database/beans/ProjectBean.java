@@ -22,6 +22,7 @@ public class ProjectBean implements Parcelable {
     private java.util.Date end_time;
     private Double interest;
     private Double interest_rate;
+    private Boolean deleted;
 
     public ProjectBean() {
     }
@@ -30,7 +31,7 @@ public class ProjectBean implements Parcelable {
         this.id = id;
     }
 
-    public ProjectBean(Long id, Integer platform_id, String platform_name, String type, String name, Double principal, java.util.Date start_time, java.util.Date end_time, Double interest, Double interest_rate) {
+    public ProjectBean(Long id, Integer platform_id, String platform_name, String type, String name, Double principal, java.util.Date start_time, java.util.Date end_time, Double interest, Double interest_rate, Boolean deleted) {
         this.id = id;
         this.platform_id = platform_id;
         this.platform_name = platform_name;
@@ -41,6 +42,7 @@ public class ProjectBean implements Parcelable {
         this.end_time = end_time;
         this.interest = interest;
         this.interest_rate = interest_rate;
+        this.deleted = deleted;
     }
 
     public Long getId() {
@@ -123,6 +125,15 @@ public class ProjectBean implements Parcelable {
         this.interest_rate = interest_rate;
     }
 
+    public Boolean getDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(Boolean deleted) {
+        this.deleted = deleted;
+    }
+
+
     @Override
     public int describeContents() {
         return 0;
@@ -140,6 +151,7 @@ public class ProjectBean implements Parcelable {
         dest.writeLong(this.end_time != null ? this.end_time.getTime() : -1);
         dest.writeValue(this.interest);
         dest.writeValue(this.interest_rate);
+        dest.writeValue(this.deleted);
     }
 
     protected ProjectBean(Parcel in) {
@@ -155,6 +167,7 @@ public class ProjectBean implements Parcelable {
         this.end_time = tmpEnd_time == -1 ? null : new Date(tmpEnd_time);
         this.interest = (Double) in.readValue(Double.class.getClassLoader());
         this.interest_rate = (Double) in.readValue(Double.class.getClassLoader());
+        this.deleted = (Boolean) in.readValue(Boolean.class.getClassLoader());
     }
 
     public static final Parcelable.Creator<ProjectBean> CREATOR = new Parcelable.Creator<ProjectBean>() {
@@ -168,9 +181,4 @@ public class ProjectBean implements Parcelable {
             return new ProjectBean[size];
         }
     };
-
-    @Override
-    public String toString() {
-        return name + ", " + principal + ", " + interest_rate + ", " + start_time;
-    }
 }

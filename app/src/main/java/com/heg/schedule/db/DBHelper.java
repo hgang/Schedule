@@ -41,6 +41,8 @@ public class DBHelper {
     public static List<ProjectBean> loadProjects() {
         ProjectBeanDao dao = DBOpenHelper.getDaoSession(App.getApp()).getProjectBeanDao();
         QueryBuilder qb = dao.queryBuilder();
-        return qb.orderAsc(ProjectBeanDao.Properties.End_time).list();
+        qb.whereOr(ProjectBeanDao.Properties.Deleted.isNull(), ProjectBeanDao.Properties.Deleted.eq(false));
+        return qb.orderAsc(ProjectBeanDao.Properties.End_time).
+                list();
     }
 }

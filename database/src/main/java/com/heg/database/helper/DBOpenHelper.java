@@ -7,7 +7,10 @@ import android.database.sqlite.SQLiteDatabase;
 import com.heg.database.BuildConfig;
 import com.heg.database.beans.DaoMaster;
 import com.heg.database.beans.DaoSession;
+import com.heg.database.beans.ProjectBean;
 import com.heg.database.beans.ProjectBeanDao;
+
+import java.util.List;
 
 /**
  * Created by YangChao on 16/3/18.
@@ -51,7 +54,7 @@ public class DBOpenHelper extends DaoMaster.OpenHelper {
         return instances;
     }
 
-    public static DaoSession getDaoSession(Context context){
+    public static DaoSession getDaoSession(Context context) {
         return getInstances(context).getSession();
     }
 
@@ -64,6 +67,7 @@ public class DBOpenHelper extends DaoMaster.OpenHelper {
 
     /**
      * get the operate master
+     *
      * @return operate master
      */
     private DaoMaster getMaster() {
@@ -74,6 +78,7 @@ public class DBOpenHelper extends DaoMaster.OpenHelper {
 
     /**
      * get the operate session
+     *
      * @return operate session
      */
     public DaoSession getSession() {
@@ -84,28 +89,27 @@ public class DBOpenHelper extends DaoMaster.OpenHelper {
 
     /**
      * database upgrade
-     * @param db database
+     *
+     * @param db         database
      * @param oldVersion database version of before
      * @param newVersion database version of upgrade
      */
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
-        /*//sample  add coloumn
-        if (!isColumnExist(db, EventDao.TABLENAME, EventDao.Properties.Version.columnName))
-            addColumn(db, EventDao.TABLENAME, EventDao.Properties.Version.columnName, DataBaseColoumnType.COLUMN_TYPE_TEXT);
-        //sample add table
+        //sample  add coloumn
+        if (!isColumnExist(db, ProjectBeanDao.TABLENAME, ProjectBeanDao.Properties.Deleted.columnName))
+            addColumn(db, ProjectBeanDao.TABLENAME, ProjectBeanDao.Properties.Deleted.columnName, DataBaseColoumnType.COLUMN_TYPE_BOOLEAN);
+        /*//sample add table
         EventDao.createTable(db, true);
 */
-
-        ProjectBeanDao.dropTable(db,true);
-        ProjectBeanDao.createTable(db,true);
     }
 
     /**
      * when add column use this to judgement column is exist
-     * @param pDb databse
-     * @param pTableName table name
+     *
+     * @param pDb         databse
+     * @param pTableName  table name
      * @param pColumnName column name
      * @return
      */
@@ -140,11 +144,12 @@ public class DBOpenHelper extends DaoMaster.OpenHelper {
 
     /**
      * add a new column
-     * @param pDb database
-     * @param pTableName table name
-     * @param pColumn column name
+     *
+     * @param pDb         database
+     * @param pTableName  table name
+     * @param pColumn     column name
      * @param pColumnType column type
-     * @param pNullAble nullable
+     * @param pNullAble   nullable
      */
     private void addColumn(SQLiteDatabase pDb, String pTableName, String pColumn, DataBaseColoumnType pColumnType, boolean pNullAble) {
         String nullAbleStr = pNullAble ? "" : " NOT NULL ";
@@ -155,9 +160,10 @@ public class DBOpenHelper extends DaoMaster.OpenHelper {
 
     /**
      * add a new column
-     * @param pDb database
-     * @param pTableName table name
-     * @param pColumn column name
+     *
+     * @param pDb         database
+     * @param pTableName  table name
+     * @param pColumn     column name
      * @param pColumnType column type
      */
     private void addColumn(SQLiteDatabase pDb, String pTableName, String pColumn, DataBaseColoumnType pColumnType) {
@@ -166,6 +172,7 @@ public class DBOpenHelper extends DaoMaster.OpenHelper {
 
     /**
      * transfer coloumn type on database
+     *
      * @param pColumnType input column type
      * @return databse column type
      */

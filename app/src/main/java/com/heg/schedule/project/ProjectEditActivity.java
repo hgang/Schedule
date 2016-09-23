@@ -133,6 +133,9 @@ public class ProjectEditActivity extends BaseActivity {
         finish();
     }
     private void onDeleteClick() {
+        mProject.setDeleted(true);
+        DBOpenHelper.getInstances(this).getSession().getProjectBeanDao().insertOrReplace(mProject);
+        finish();
     }
 
     /**

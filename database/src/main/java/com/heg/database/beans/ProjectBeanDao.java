@@ -33,6 +33,7 @@ public class ProjectBeanDao extends AbstractDao<ProjectBean, Long> {
         public final static Property End_time = new Property(7, java.util.Date.class, "end_time", false, "END_TIME");
         public final static Property Interest = new Property(8, Double.class, "interest", false, "INTEREST");
         public final static Property Interest_rate = new Property(9, Double.class, "interest_rate", false, "INTEREST_RATE");
+        public final static Property Deleted = new Property(10, Boolean.class, "deleted", false, "DELETED");
     };
 
 
@@ -57,7 +58,8 @@ public class ProjectBeanDao extends AbstractDao<ProjectBean, Long> {
                 "\"START_TIME\" INTEGER," + // 6: start_time
                 "\"END_TIME\" INTEGER," + // 7: end_time
                 "\"INTEREST\" REAL," + // 8: interest
-                "\"INTEREST_RATE\" REAL);"); // 9: interest_rate
+                "\"INTEREST_RATE\" REAL," + // 9: interest_rate
+                "\"DELETED\" INTEGER);"); // 10: deleted
     }
 
     /** Drops the underlying database table. */
@@ -120,6 +122,11 @@ public class ProjectBeanDao extends AbstractDao<ProjectBean, Long> {
         if (interest_rate != null) {
             stmt.bindDouble(10, interest_rate);
         }
+ 
+        Boolean deleted = entity.getDeleted();
+        if (deleted != null) {
+            stmt.bindLong(11, deleted ? 1L: 0L);
+        }
     }
 
     /** @inheritdoc */
@@ -141,7 +148,8 @@ public class ProjectBeanDao extends AbstractDao<ProjectBean, Long> {
             cursor.isNull(offset + 6) ? null : new java.util.Date(cursor.getLong(offset + 6)), // start_time
             cursor.isNull(offset + 7) ? null : new java.util.Date(cursor.getLong(offset + 7)), // end_time
             cursor.isNull(offset + 8) ? null : cursor.getDouble(offset + 8), // interest
-            cursor.isNull(offset + 9) ? null : cursor.getDouble(offset + 9) // interest_rate
+            cursor.isNull(offset + 9) ? null : cursor.getDouble(offset + 9), // interest_rate
+            cursor.isNull(offset + 10) ? null : cursor.getShort(offset + 10) != 0 // deleted
         );
         return entity;
     }
@@ -159,6 +167,7 @@ public class ProjectBeanDao extends AbstractDao<ProjectBean, Long> {
         entity.setEnd_time(cursor.isNull(offset + 7) ? null : new java.util.Date(cursor.getLong(offset + 7)));
         entity.setInterest(cursor.isNull(offset + 8) ? null : cursor.getDouble(offset + 8));
         entity.setInterest_rate(cursor.isNull(offset + 9) ? null : cursor.getDouble(offset + 9));
+        entity.setDeleted(cursor.isNull(offset + 10) ? null : cursor.getShort(offset + 10) != 0);
      }
     
     /** @inheritdoc */
